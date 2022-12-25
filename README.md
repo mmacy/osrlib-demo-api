@@ -1,5 +1,7 @@
 # Demo ASP.NET web API for OSRlib.NET
 
+![The OSRlib.NET logo, based on the logo of the defunct TSR game company.](https://raw.githubusercontent.com/mmacy/osrlib-dotnet/d0260ced0b34194121a220ab6f4b596806af2c50/docs/images/logo-osr-128x128.png)
+
 This ASP.NET web API shows a sample implementation of a REST-style web API whose endpoints surface [OSRlib.NET](https://github.com/mmacy/osrlib-dotnet) functionality to remote client applications.
 
 Like the [OSRlib.NET package](https://www.nuget.org/packages/osrlib.Core) itself, this sample application is in the early stages of development.
