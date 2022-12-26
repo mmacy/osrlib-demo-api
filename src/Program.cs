@@ -1,11 +1,27 @@
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Cross-origin resource requests from these clients are permitted.
+string[]  _originAllowList = {
+    "http://localhost:5091",
+    "https://localhost:5091"
+    };
 
+// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    // Add a CORS policy that tells the API to include response
+    // headers informing browsers that the calls are permitted.
+    options.AddPolicy(name: "OriginAllowList",
+                      policy  =>
+                      {
+                          policy.WithOrigins(_originAllowList);
+                      });
+});
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer(); // For Swagger/OpenAPI UI (see https://aka.ms/aspnetcore/swashbuckle)
+builder.Services.AddSwaggerGen();           // For Swagger/OpenAPI UI
 
 var app = builder.Build();
 
@@ -17,7 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("OriginAllowList");
 app.UseAuthorization();
 
 app.MapControllers();
