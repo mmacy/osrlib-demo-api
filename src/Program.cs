@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Cross-origin resource requests from these clients are permitted.
 string[]  _originAllowList = {
+    "http://localhost:3000",
     "http://localhost:5091",
     "https://localhost:5091"
     };
@@ -19,7 +20,8 @@ builder.Services.AddCors(options =>
                           policy.WithOrigins(_originAllowList);
                       });
 });
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer(); // For Swagger/OpenAPI UI (see https://aka.ms/aspnetcore/swashbuckle)
 builder.Services.AddSwaggerGen();           // For Swagger/OpenAPI UI
 
